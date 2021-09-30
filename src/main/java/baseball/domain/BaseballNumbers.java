@@ -22,10 +22,10 @@ public class BaseballNumbers {
         this.baseballNumbers = baseballNumbers;
     }
 
-    public BaseballNumbers(){
+    public BaseballNumbers() {
         Set<BaseballNumber> computerNumbers = new HashSet<>();
-        while(computerNumbers.size() < SIZE){
-            computerNumbers.add(new BaseballNumber(Randoms.pickNumberInRange(1,9)));
+        while (computerNumbers.size() < SIZE) {
+            computerNumbers.add(new BaseballNumber(Randoms.pickNumberInRange(1, 9)));
         }
         this.baseballNumbers = new ArrayList<>(computerNumbers);
     }
@@ -37,15 +37,31 @@ public class BaseballNumbers {
         }
     }
 
+    public boolean isEnd(BaseballNumbers userNumbers) {
+        return strikeCount(userNumbers) == 3;
+    }
+
+    public boolean isNothing(BaseballNumbers userNumbers) {
+        return strikeCount(userNumbers) == 0 && ballCount(userNumbers) == 0;
+    }
+
+    public boolean hasStrike(BaseballNumbers userNumbers) {
+        return strikeCount(userNumbers) != 0;
+    }
+
     public int strikeCount(BaseballNumbers userNumbers) {
-        return (int) IntStream.range(0,userNumbers.size())
-                .filter(i-> isStrike(i, userNumbers.getBaseballNumbers().get(i)))
+        return (int) IntStream.range(0, userNumbers.size())
+                .filter(i -> isStrike(i, userNumbers.getBaseballNumbers().get(i)))
                 .count();
     }
 
+    public boolean hasBall(BaseballNumbers userNumbers) {
+        return ballCount(userNumbers) != 0;
+    }
+
     public int ballCount(BaseballNumbers userNumbers) {
-        return (int) IntStream.range(0,userNumbers.size())
-                .filter(i-> isBall(i, userNumbers.getBaseballNumbers().get(i)))
+        return (int) IntStream.range(0, userNumbers.size())
+                .filter(i -> isBall(i, userNumbers.getBaseballNumbers().get(i)))
                 .count();
     }
 

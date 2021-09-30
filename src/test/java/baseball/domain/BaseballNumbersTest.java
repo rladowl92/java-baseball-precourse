@@ -50,4 +50,31 @@ class BaseballNumbersTest {
         BaseballNumbers userNumbers = new BaseballNumbers(userStr);
         assertThat(computerNumbers.ballCount(userNumbers)).isEqualTo(count);
     }
+
+    @DisplayName("nothing 여부 확인")
+    @ParameterizedTest
+    @CsvSource(value = {"456:true", "123:false", "156:false"}, delimiter = ':')
+    void isNothing(String userStr, boolean result) {
+        BaseballNumbers baseballNumbers = new BaseballNumbers("123");
+        BaseballNumbers userNumbers = new BaseballNumbers(userStr);
+        assertThat(baseballNumbers.isNothing(userNumbers)).isEqualTo(result);
+    }
+
+    @DisplayName("strike 여부 확인")
+    @ParameterizedTest
+    @CsvSource(value = {"123:true", "156:true", "231:false", "456:false"}, delimiter = ':')
+    void hasStrike(String userStr, boolean result) {
+        BaseballNumbers baseballNumbers = new BaseballNumbers("123");
+        BaseballNumbers userNumbers = new BaseballNumbers(userStr);
+        assertThat(baseballNumbers.hasStrike(userNumbers)).isEqualTo(result);
+    }
+
+    @DisplayName("ball 여부 확인")
+    @ParameterizedTest
+    @CsvSource(value = {"312:true", "134:true", "123:false", "456:false"}, delimiter = ':')
+    void hasBall(String userStr, boolean result) {
+        BaseballNumbers baseballNumbers = new BaseballNumbers("123");
+        BaseballNumbers userNumbers = new BaseballNumbers(userStr);
+        assertThat(baseballNumbers.hasBall(userNumbers)).isEqualTo(result);
+    }
 }

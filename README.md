@@ -30,5 +30,6 @@
   * isBall : 자리는 다르지만 숫자가 동일한 경우 true
   * strikeCount : isStrike를 반복하여 개수 반환
   * ballCount : isBall을 반복하여 개수 반환
+  * isNothing : strike나 ball이 없으면 true
 * 입출력 view 및 어플리케이션 추가
 
