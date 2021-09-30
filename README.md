@@ -21,17 +21,14 @@
 * baseballNumber
   * 1-9까지 숫자로 validation
 * baseballNumbers
-  * baseballNumber set : 서로 다른 숫자를 보장하기 위해 set 자료형 사용
+  * baseballNumber list
   * 생성자로 숫자 전달
     * integer로 입력받아서 baseballNuber set으로 변환
     * 컴퓨터 수는 랜덤 생성한 값으로 전달
     * 플레이어 수는 사용자 입력값으로 전달
-  * 3자리 숫자인지 validation
-* score
-  * computerNumber, userNumber
-  * 생성자로 baseballNumber 두개를 전달
+  * 3자리 숫자인지 validation : set 자료형 활용
   * isStrike : 자리와 숫자가 동일한 경우 true
-  * isBall : 동일한 숫자가 포함된 경우 true
+  * isBall : 자리는 다르지만 숫자가 동일한 경우 true
   * strikeCount : isStrike를 반복하여 개수 반환
   * ballCount : isBall을 반복하여 개수 반환
 * 입출력 view 및 어플리케이션 추가

@@ -1,26 +1,58 @@
 package baseball.domain;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BaseballNumbers {
     private static final int SIZE = 3;
 
-    private Set<BaseballNumber> baseballNumbers;
+    private List<BaseballNumber> baseballNumbers;
 
-    public BaseballNumbers(Set<BaseballNumber> baseballNumbers) {
-        if (baseballNumbers.size() != SIZE) {
-            throw new IllegalArgumentException("3자리 숫자를 입력해주세요");
-        }
+    public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
+        validate(baseballNumbers);
         this.baseballNumbers = baseballNumbers;
     }
 
     public BaseballNumbers(String numberStr) {
         this(Arrays.stream(numberStr.split(""))
                 .map(str -> new BaseballNumber(Integer.parseInt(str)))
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
+    }
+
+    private void validate(List<BaseballNumber> baseballNumbers) {
+        Set<BaseballNumber> setNumbers = new HashSet<>(baseballNumbers);
+        if (setNumbers.size() != SIZE) {
+            throw new IllegalArgumentException("3자리 숫자를 입력해주세요");
+        }
+    }
+
+    public int strikeCount(BaseballNumbers userNumbers) {
+        return (int) IntStream.range(0,userNumbers.size())
+                .filter(i-> isStrike(i, userNumbers.getBaseballNumbers().get(i)))
+                .count();
+    }
+
+    public int ballCount(BaseballNumbers userNumbers) {
+        return (int) IntStream.range(0,userNumbers.size())
+                .filter(i-> isBall(i, userNumbers.getBaseballNumbers().get(i)))
+                .count();
+    }
+
+    private boolean isStrike(int index, BaseballNumber number) {
+        return baseballNumbers.get(index).equals(number);
+    }
+
+    private boolean isBall(int index, BaseballNumber number) {
+        return !isStrike(index, number) && baseballNumbers.contains(number);
+    }
+
+    public List<BaseballNumber> getBaseballNumbers() {
+        return baseballNumbers;
+    }
+
+    public int size() {
+        return baseballNumbers.size();
     }
 
     @Override
