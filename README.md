@@ -19,11 +19,15 @@
 
 ## 기능 목록
 * baseballNumber
+  * 1-9까지 숫자로 validation
+* baseballNumbers
+  * baseballNumber list
   * 생성자로 숫자 전달
     * 컴퓨터 수는 랜덤 생성한 값으로 전달
     * 플레이어 수는 사용자 입력값으로 전달
   * 서로 다른 3자리 숫자 validation
 * score
+  * computerNumber, userNumber
   * 생성자로 baseballNumber 두개를 전달
   * isStrike : 자리와 숫자가 동일한 경우 true
   * isBall : 동일한 숫자가 포함된 경우 true
