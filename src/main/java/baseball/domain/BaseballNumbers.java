@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import nextstep.utils.Randoms;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,15 +11,23 @@ public class BaseballNumbers {
 
     private List<BaseballNumber> baseballNumbers;
 
+    public BaseballNumbers(String numberStr) {
+        this(Arrays.stream(numberStr.split(""))
+                .map(str -> new BaseballNumber(Integer.parseInt(str)))
+                .collect(Collectors.toList()));
+    }
+
     public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
         validate(baseballNumbers);
         this.baseballNumbers = baseballNumbers;
     }
 
-    public BaseballNumbers(String numberStr) {
-        this(Arrays.stream(numberStr.split(""))
-                .map(str -> new BaseballNumber(Integer.parseInt(str)))
-                .collect(Collectors.toList()));
+    public BaseballNumbers(){
+        Set<BaseballNumber> computerNumbers = new HashSet<>();
+        while(computerNumbers.size() < SIZE){
+            computerNumbers.add(new BaseballNumber(Randoms.pickNumberInRange(1,9)));
+        }
+        this.baseballNumbers = new ArrayList<>(computerNumbers);
     }
 
     private void validate(List<BaseballNumber> baseballNumbers) {

@@ -23,9 +23,8 @@
 * baseballNumbers
   * baseballNumber list
   * 생성자로 숫자 전달
-    * integer로 입력받아서 baseballNuber set으로 변환
-    * 컴퓨터 수는 랜덤 생성한 값으로 전달
     * 플레이어 수는 사용자 입력값으로 전달
+    * 컴퓨터 수는 입력값 없이 랜덤 생성
   * 3자리 숫자인지 validation : set 자료형 활용
   * isStrike : 자리와 숫자가 동일한 경우 true
   * isBall : 자리는 다르지만 숫자가 동일한 경우 true

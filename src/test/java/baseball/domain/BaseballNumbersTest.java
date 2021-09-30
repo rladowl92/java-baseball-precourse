@@ -10,10 +10,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BaseballNumbersTest {
+    @DisplayName("직접 숫자를 입력해서 생성")
     @Test
-    void create() {
+    void create_user() {
         BaseballNumbers baseballNumbers = new BaseballNumbers("123");
         assertThat(baseballNumbers).isEqualTo(new BaseballNumbers("123"));
+    }
+
+    @DisplayName("자동 생성")
+    @Test
+    void create_computer() {
+        BaseballNumbers baseballNumbers = new BaseballNumbers();
+        assertThat(baseballNumbers.size()).isEqualTo(3);
     }
 
     @DisplayName("3자리 숫자가 아니면 에러 발생")
