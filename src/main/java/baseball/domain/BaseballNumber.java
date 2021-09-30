@@ -8,8 +8,8 @@ public class BaseballNumber {
 
     private int value;
 
-    BaseballNumber(int value){
-        if(value < MIN_NUMBER || value > MAX_NUMBER){
+    public BaseballNumber(int value) {
+        if (value < MIN_NUMBER || value > MAX_NUMBER) {
             throw new IllegalArgumentException("1-9까지 숫자만 입력 가능합니다.");
         }
         this.value = value;
