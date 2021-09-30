@@ -11,7 +11,7 @@ public class BaseballNumbers {
 
     public BaseballNumbers(String numberStr) {
         List<BaseballNumber> baseballNumbers = new ArrayList<>();
-        for(String i: numberStr.split("")){
+        for (String i : numberStr.split("")) {
             baseballNumbers.add(new BaseballNumber(Integer.parseInt(i)));
         }
         validate(baseballNumbers);
@@ -19,11 +19,18 @@ public class BaseballNumbers {
     }
 
     public BaseballNumbers() {
-        Set<BaseballNumber> computerNumbers = new HashSet<>();
+        List<BaseballNumber> computerNumbers = new ArrayList<>();
         while (computerNumbers.size() < SIZE) {
-            computerNumbers.add(new BaseballNumber(Randoms.pickNumberInRange(1, 9)));
+            BaseballNumber randomNumber = new BaseballNumber(Randoms.pickNumberInRange(1, 9));
+            addRandomNumber(computerNumbers, randomNumber);
         }
-        this.baseballNumbers = new ArrayList<>(computerNumbers);
+        this.baseballNumbers = computerNumbers;
+    }
+
+    private void addRandomNumber(List<BaseballNumber> computerNumbers, BaseballNumber randomNumber) {
+        if (!computerNumbers.contains(randomNumber)) {
+            computerNumbers.add(randomNumber);
+        }
     }
 
     private void validate(List<BaseballNumber> baseballNumbers) {

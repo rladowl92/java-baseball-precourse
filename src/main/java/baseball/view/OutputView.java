@@ -5,7 +5,7 @@ import baseball.domain.BaseballNumbers;
 public class OutputView {
     public void printResult(BaseballNumbers computerNumbers, BaseballNumbers userNumbers) {
         if (computerNumbers.isNothing(userNumbers)) {
-            System.out.println("nothing");
+            System.out.println("낫싱");
         }
         printHits(computerNumbers, userNumbers);
         System.out.println();
@@ -13,10 +13,10 @@ public class OutputView {
 
     private void printHits(BaseballNumbers computerNumbers, BaseballNumbers userNumbers) {
         if (computerNumbers.hasStrike(userNumbers)) {
-            System.out.printf("%d strike ", computerNumbers.strikeCount(userNumbers));
+            System.out.printf("%d스트라이크 ", computerNumbers.strikeCount(userNumbers));
         }
         if (computerNumbers.hasBall(userNumbers)) {
-            System.out.printf("%d ball", computerNumbers.ballCount(userNumbers));
+            System.out.printf("%d볼", computerNumbers.ballCount(userNumbers));
         }
     }
 
