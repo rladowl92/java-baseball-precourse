@@ -3,8 +3,6 @@ package baseball.domain;
 import nextstep.utils.Randoms;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class BaseballNumbers {
     private static final int SIZE = 3;
@@ -12,12 +10,10 @@ public class BaseballNumbers {
     private List<BaseballNumber> baseballNumbers;
 
     public BaseballNumbers(String numberStr) {
-        this(Arrays.stream(numberStr.split(""))
-                .map(str -> new BaseballNumber(Integer.parseInt(str)))
-                .collect(Collectors.toList()));
-    }
-
-    public BaseballNumbers(List<BaseballNumber> baseballNumbers) {
+        List<BaseballNumber> baseballNumbers = new ArrayList<>();
+        for(String i: numberStr.split("")){
+            baseballNumbers.add(new BaseballNumber(Integer.parseInt(i)));
+        }
         validate(baseballNumbers);
         this.baseballNumbers = baseballNumbers;
     }
@@ -49,28 +45,38 @@ public class BaseballNumbers {
         return strikeCount(userNumbers) != 0;
     }
 
-    public int strikeCount(BaseballNumbers userNumbers) {
-        return (int) IntStream.range(0, userNumbers.size())
-                .filter(i -> isStrike(i, userNumbers.getBaseballNumbers().get(i)))
-                .count();
-    }
-
     public boolean hasBall(BaseballNumbers userNumbers) {
         return ballCount(userNumbers) != 0;
     }
 
+    public int strikeCount(BaseballNumbers userNumbers) {
+        int count = 0;
+        for (int i = 0; i < userNumbers.size(); i++) {
+            count += isStrike(i, userNumbers.getBaseballNumbers().get(i));
+        }
+        return count;
+    }
+
     public int ballCount(BaseballNumbers userNumbers) {
-        return (int) IntStream.range(0, userNumbers.size())
-                .filter(i -> isBall(i, userNumbers.getBaseballNumbers().get(i)))
-                .count();
+        int count = 0;
+        for (int i = 0; i < userNumbers.size(); i++) {
+            count += isBall(i, userNumbers.getBaseballNumbers().get(i));
+        }
+        return count;
     }
 
-    private boolean isStrike(int index, BaseballNumber number) {
-        return baseballNumbers.get(index).equals(number);
+    private int isStrike(int index, BaseballNumber number) {
+        if (baseballNumbers.get(index).equals(number)) {
+            return 1;
+        }
+        return 0;
     }
 
-    private boolean isBall(int index, BaseballNumber number) {
-        return !isStrike(index, number) && baseballNumbers.contains(number);
+    private int isBall(int index, BaseballNumber number) {
+        if (isStrike(index, number) == 0 && baseballNumbers.contains(number)) {
+            return 1;
+        }
+        return 0;
     }
 
     public List<BaseballNumber> getBaseballNumbers() {
