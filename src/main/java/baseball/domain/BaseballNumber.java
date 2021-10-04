@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import baseball.exception.BaseballException;
+
 import java.util.Objects;
 
 public class BaseballNumber {
@@ -10,7 +12,7 @@ public class BaseballNumber {
 
     public BaseballNumber(int value) {
         if (value < MIN_NUMBER || value > MAX_NUMBER) {
-            throw new IllegalArgumentException("1-9까지 숫자만 입력 가능합니다.");
+            throw new BaseballException("1-9까지 숫자만 입력 가능합니다.");
         }
         this.value = value;
     }

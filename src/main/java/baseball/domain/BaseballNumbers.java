@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.exception.BaseballException;
 import nextstep.utils.Randoms;
 
 import java.util.*;
@@ -36,7 +37,7 @@ public class BaseballNumbers {
     private void validate(List<BaseballNumber> baseballNumbers) {
         Set<BaseballNumber> setNumbers = new HashSet<>(baseballNumbers);
         if (setNumbers.size() != SIZE) {
-            throw new IllegalArgumentException("3자리 숫자를 입력해주세요");
+            throw new BaseballException("서로 다른 3자리 숫자를 입력해주세요");
         }
     }
 
